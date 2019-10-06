@@ -53,7 +53,7 @@ if (a < b) {
                 break;
             }
         }
-    
+        
         console.log(value, isPrime);
     }
 }
