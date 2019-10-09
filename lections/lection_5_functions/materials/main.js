@@ -54,3 +54,33 @@ function sum(a, b){
 
 res = sum(2, 12);
 console.log(res);
+
+
+// ------------------
+
+
+function fillArray(arr, n){
+    arr.length = n;
+
+    for(i = 0; i < arr.length; i++){
+        arr[i] = getRandom(-20, 45);
+    }
+
+    return arr;
+}
+
+function getRandom(min, max) {
+    return Math.floor(Math.random()*(max - min + 1) + min);
+}
+
+
+A = [1, 3,3,4];
+A = fillArray(A, 40);
+console.log(A);
+
+
+
+A = fillArray(A, 20);
+console.log(A);
+A = fillArray(A, 10);
+console.log(A);
