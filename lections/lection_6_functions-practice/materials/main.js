@@ -91,3 +91,49 @@ var max = 10;
 
 // f();
 // f1();
+
+// ------------------------------------
+
+// function f(a, b){
+//     // arguments.push(10);
+//     for(var i = 0; i < arguments.length; i++) {
+//         console.log(arguments[i]);
+//     }
+// }
+
+
+// f(10, 20, 89, 56, 68, 34, 34);
+
+// ------------------------------------
+
+var list = getCentralElements(
+    [8,7,8,7,6],
+    ["1", "asd", "sdgsdg", false],
+    [6],
+    [1,2],
+    [1,2,32,3,23,2,3,23],
+    [23,6,6,6,6,7,43,4]
+);
+
+console.log(list);
+
+function getCentralElements() {
+    var res = [];
+    for(var i = 0; i < arguments.length; i++){
+        res = res.concat(getCentralElement(arguments[i]));
+        console.log(res);
+    }
+    return res;
+}
+
+
+
+function getCentralElement(source) {
+    var isLengthEven = source.length % 2 == 0;
+    var middle = Math.ceil(source.length / 2) - 1;
+    var count = 1;
+    if(isLengthEven){
+        count = 2
+    }
+    return source.slice(middle, middle + count);
+}
