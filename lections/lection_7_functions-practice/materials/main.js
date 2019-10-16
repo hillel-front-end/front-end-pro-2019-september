@@ -102,17 +102,38 @@ function f(p, l) { // f.scope = Global f.LE = x = 1000, p=900, l=78, f1 = functi
 
 function factory(list) {
     var index = 0;
-
-    return function(){
-        return list[index++];
+ 
+    // return function(cb){
+    //     if(!cb) {
+    //         return list[index++];
+    //     }
+    //     var calc = cb(list[index++]);
+    //     return calc;
+    // };
+    return function(cb){
+        var value = list[index++];
+       return cb ? cb(value) : value;
     };
 }
 
 var next = factory([1,7,8,8,67,64,46,64,634,64,46,46]);
 
-console.log(next()); // 1
-console.log(next()); // 7
-console.log(next()); // 8
+console.log(next(div)); // 1
+console.log(next(fact)); // 7
+console.log(next(div)); // 8
 factory = undefined;
 console.log(next());
 console.log(next());
+
+function div(x) {
+    return x/10;
+}
+
+function fact(n) {
+    var res = 1;
+    for(var i = 1; i <= n; i++){
+        res *= i;
+    }
+
+    return res;
+}
