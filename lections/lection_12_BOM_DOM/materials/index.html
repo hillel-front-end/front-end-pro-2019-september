@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="dataset.js"></script>
+
+   <style>
+       #form {
+           color: red;
+
+           transition: .1s;
+       }
+
+       #form.active {
+           padding: 20px 0;
+           background-color: transparent!important;
+       }
+
+       .example {
+           color: green;
+
+           transition: background-color .5s;
+       }
+
+       .example-fofo {
+           font-size: 25px;
+       }
+
+       [data-surname] {
+           border: 2px solid black;
+       }
+   </style>
+</head>
+<body>
+    <div id="form" class="form-class" style="z-index: 999; background-color: aqua;">
+        Form
+    </div>
+    <hr>
+    <div class="example p1">1</div>
+    <div class="example">2</div>
+    <div class="example p3">3</div>
+    <div class="example">4</div>
+
+    <div class="custom-element" data-fofo-d="koka" data-id="0978">
+        custom-element
+    </div>
+</body>
+</html>
