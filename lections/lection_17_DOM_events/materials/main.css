@@ -1,4 +1,4 @@
-.block {
+.block[data-id="b-1"] {
     width: 190px;
     height: 150px;
 
@@ -10,4 +10,16 @@
     left: 53px;
 
     /* transition: .1s; */
+}
+
+.block[data-id="b-2"] {
+    width: 90px;
+    height: 50px;
+
+    border: 1px solid black;
+
+    position: fixed;
+
+    top: 100px;
+    left: 153px; 
 }

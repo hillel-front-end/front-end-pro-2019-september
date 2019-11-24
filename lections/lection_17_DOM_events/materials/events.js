@@ -2,7 +2,6 @@ window.addEventListener('load', function(){
 
     var block = document.querySelector('.block');
 
-
     var a, b, l, t;
     block.addEventListener('mousedown', function(event){
         a = event.clientX;
@@ -29,5 +28,4 @@ window.addEventListener('load', function(){
     function onMouseUp() {
         document.removeEventListener('mousemove', onMouseMove); 
     }
-
 })
