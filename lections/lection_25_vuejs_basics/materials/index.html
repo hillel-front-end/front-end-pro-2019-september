@@ -20,12 +20,12 @@
        
     </div>  -->
 
-  <hr />
+  <!-- <hr />
     <div id="app-2">
         {{ className }}
         <span 
-            alt="example"
-            v-bind:title="className"
+            v-bind:title="className + '___asdasdad'"
+            :data-example="value*200 || 'default'"
             v-bind:style="appearence  + 'font-size:' + value*3 + 'px'">
             span inner text
         </span>
@@ -36,53 +36,66 @@
         </span>
     </div>
 
-    <hr />
+    <hr /> -->
 
     <!-- <div id="app-3">
-        <span v-if="seen">Сейчас меня видно</span>
+        <span v-if="seen">Сейчас меня видно {{info}}</span>
     </div> -->
  
     <!-- <hr />
 
     <div id="app-4">
         <ol>    
-            <li v-for="item in list" v-if="item.text">
+            <li v-for="(item, index) in list" v-if="item.text">
                 {{ item.text }}
             </li>
-            {{ item }}
         </ol>
-    </div> -->
+        <hr>
+        <ol>    
+            <li v-for="(value, key) in info" >
+                {{ key }}: {{ value }}
+            </li>
+        </ol>
+    </div>
 
-    <hr>
-    <!-- <div id="app-5">
-        <span>
+    <hr> -->
+    <!-- <div id="app-5"> -->
+        <!-- <span>
             {{ calculate(8) }}
+            <span v-html="calculate(8)"></span>
             counter: {{counter}}
-
-            {{ Click(3) }}
         </span>
-        <button v-on:click="Click(counter, $event)">
+        
+
+            
+        <button 
+            v-for="elem in list" 
+            @dblclick="onClick($event, elem)">
+            Click
+        </button> -->
+
+        <!-- counter: {{counter}}
+        <button @click="onClick">
             Click
         </button>
+        <div 
+            class="test"
+            :class="{'active': counter > 10}"
+        >
 
-        <ul>
-            <li v-for="element in list">
-                <button 
-                    @click="Click(element, 1), Click(element, 2)"
-                    @contextmenu.prevent="Click(element)"
-                >Click</button>
-            </li>
-        </ul>
-    </div> -->
+        </div>
+        <button @click="addRandClass">Add random class</button>
+    </div>
 
-    <hr>
+    <hr> -->
 
      <!-- <div id="app-6">
         <p v-if="switcher">{{ message }}</p>
-        <input :value="message">
-        <input v-model="message">
+        Event oriented: <input @input="onInput" :value="message">
+        <hr>
+        Two-way binding: <input v-model="message">
+
         <input type="checkbox" v-model="switcher">
-        switcher: {{ switcher }}
     </div> -->
 <!--
     <hr>
