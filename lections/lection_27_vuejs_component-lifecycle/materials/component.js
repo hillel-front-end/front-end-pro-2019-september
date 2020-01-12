@@ -1,51 +1,87 @@
 Vue.component('front-end', {
-    // props: ['title', 'desc'],
+    // props: ['example', 'numbers'],
     props: {
-        title: {
-            type: String,
-            default: 'Default title'
+        example: {
+            type: [Number, String]
         },
-        desc: {
-            type: String
+        numbers: {
+            type: Array,
+            default: [6, 9, 0]
         },
-        flag: {
+        third: {
             type: Boolean,
-            default: false
+            default: true
         }
     },
-    data(){
+    data(){ 
         return {
-            x: 50
+            title: "Hello Front end!"
         }
     },
     methods: {
-        getX(){
-            return this.x;
+        onClick() {
+            this.title += "!"
+        },
+        Remove(key) {
+            this.numbers.splice(key, 1);
         }
     },
-    beforeUpdate(){
-        console.log(this.x)
-    },
     template: `
-        <div>
+        <div class="example">
             <h2>{{title}}</h2>
-            <h4 v-if="flag">{{desc}}</h4>
-           <span v-if="getX() > 0">
-               X: {{ getX() }}
-           </span>
-            <input v-model="x" type="number" />  
+            <h3>{{example}}</h3>
+            <button @click="onClick">Click</button> 
+            <input type="text" v-model="example">
+            <hr>
+            <ol>
+                <li v-for="(item, key) in numbers" @click="Remove(key)">
+                    Item {{item}}
+                </li>
+            </ol>
         </div>
-    `
+    `,
+    mounted() {
+        console.log(this);
+    }
 });
 
-new Vue({
+Vue.component('front-button', {
+    props: ['type', 'text', 'onClick'],
+    methods: {
+        onEventClick() {
+            this.onClick && this.onClick();
+        }
+    },
+    template: `
+        <button class="button" :class="type" @click="onEventClick">
+            {{ text }}
+        </button> 
+    `,
+    mounted() {
+        console.log(this);
+    }
+});
+
+let app = new Vue({
     el: '.app',
     data: {
         x: 10,
         title: 'Hello world!',
-        checker: false
+        checker: false,
+        exampleApp: 'Hello Front End!',
+        list: [1, 6, 7, 8, 9]
     },
-    beforeUpdate(){
-        console.log(this.checker)
+    methods: {
+        onClickFrontBtnPrimary() {
+            console.log('onClickFrontBtnPrimary');
+        },
+        onAddToCart() {
+            console.log('add to cart');
+
+            console.log('POST', this.list);
+        }
+    },
+    beforeMount(){
+        // debugger;
     }
 });

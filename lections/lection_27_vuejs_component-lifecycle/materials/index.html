@@ -11,21 +11,56 @@
 
 <body>
     
-    <div id="app">
+    <!-- <div id="app">
       {{ x }}
       {{ y + x }}
       getCustomValue: {{ getCustomValue() }}
-    </div> 
+    </div>  -->
 
-    <!-- <div class="app">
-        Hello {{ x }}
-        <input type="checkbox" v-model="checker">
+    <div class="app"> 
+        <!-- <input type="text" v-model="exampleApp">
         <front-end 
-            :title="title" 
-            desc="example desc"
-            :flag="checker"
-        />
-    </div> -->
+            :example="exampleApp"
+            :numbers="list"
+        >
+        </front-end>
+        List: {{list}} -->
 
-    <script src="./main.js"></script>
+        <header>
+            <front-button 
+                type="primary" 
+                text="Add to Cart"
+                :on-click="onAddToCart"
+            ></front-button>
+        </header>
+
+        <footer>
+            <front-button 
+                type="primary" 
+                text="Front btn click"
+                :on-click="onClickFrontBtnPrimary"
+            ></front-button>
+        </footer>
+
+
+        <!-- <front-button type="secondary" text="SignIn"></front-button> -->
+    </div>
+
+    <script src="./component.js"></script>
+    <style>
+        .button {
+            padding: 10px;
+            outline: none;
+        }
+
+        .button.primary {
+            background-color: greenyellow;
+            color: #000;
+        }
+
+        .button.secondary {
+            background-color: aquamarine;
+            color: #000;
+        }
+    </style>
 </html>
