@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h2>
+    <!-- <h2>
       {{title}}
     </h2>
     <ul>
@@ -13,20 +13,44 @@
        @test-example-super="onSomethingChangeInList"
        :title="title"
        @title-update="onTitleUpdate"
-    ></Example>
+    ></Example> -->
+    <!-- <hr>
+    <FormExample></FormExample> -->
+    <hr>
+    <SlotExample 
+      :title="'Slot example'"
+      @event-example="onEventHandler"
+    >
+        Unique text
+        <p>Paragraph</p>
+        <input type="checkbox" v-model="isVisible">
+        <p v-if="isVisible"> {{list}} </p>
+        <!-- <FormExample></FormExample> -->
+        <template v-slot:super-puper>
+          Super unique text
+        </template>
+       
+
+        UNDER SUPER TEXT
+    </SlotExample>
   </div>
 </template>
 
 <script>
 import Example from './components/Example';
+import FormExample from './components/FormExample';
+import SlotExample from './components/SlotExample';
 
 export default {
   name: 'app',
   components: {
-    Example
+    // Example,
+    // FormExample,
+    SlotExample
   },
   data() {
     return {
+      isVisible: false,
       list: [1, 2, 3, 4],
       title: 'Hello world'
     }
@@ -40,6 +64,9 @@ export default {
     },
     onTitleUpdate({ value }) {
       this.title = value;
+    },
+    onEventHandler(args) {
+      console.log('args', args);
     }
   }
 }
