@@ -5,9 +5,9 @@ function pathConcat(pathname) {
 	return path + '/' + pathname;
 }
 
-function filereader(fsRef, path) {
+function filereader(path) {
 	return new Promise(function (resolve, reject) {
-		fsRef.readFile(path, 'utf8', function (e, d) {
+		fs.readFile(path, 'utf8', function (e, d) {
 
 			if (e) reject(e);
 
@@ -16,53 +16,61 @@ function filereader(fsRef, path) {
 	});
 }
 
-function getBuildings(req, res) {
-	let path = pathConcat('api' + req.route.path + '/' + req.method.toLowerCase() + '.json'),
-		servicePromise = filereader(fs, path);
+// function getBuildings(req, res) {
+// 	let path = pathConcat('api' + req.route.path + '/' + req.method.toLowerCase() + '.json'),
+// 		servicePromise = filereader(path);
 
-	console.log(path);
+// 	console.log(path);
 	
-	servicePromise
-		.then((response) => {
-			// let newList = response.results.filter(item => item.price);
+// 	servicePromise
+// 		.then((response) => {
+// 			res.json(response);
+// 		});
+// }
 
-			// response.results = newList;
+// function getUser(req, res) {
+// 	let path = pathConcat('api' + req.url + '/' + req.method.toLowerCase() + '.json'),
+// 		servicePromise = filereader(path);
 
-			return response;
-		})
-		.then((response) => {
-			res.json(response);
+// 	console.log(path);
+	
+// 	servicePromise
+// 		.then((response) => {
+// 			response.data = 'VAYSA';
+
+// 			return response;
+// 		})
+// 		.then((response) => {
+// 			res.json(response);
+// 		});
+// }
+
+// function list(req, res) {
+// 	let path = pathConcat('api' + req.url + '/' + req.method.toLowerCase() + '.json'),
+// 		servicePromise = filereader(path);
+
+// 	console.log(path);
+	
+// 	servicePromise
+// 		.then((response) => {
+// 			res.json(response);
+// 		});
+// }
+
+function universalMethod(req, res) {
+	let path = pathConcat('api' + req.url + '/' + req.method.toLowerCase() + '.json');
+	console.log('Universal', path);
+	filereader(path)
+		.then(response => {
+			res.json(response)
 		});
 }
 
-function getUser(req, res) {
-	let path = pathConcat('api' + req.url + '/' + req.method.toLowerCase() + '.json'),
-		servicePromise = filereader(fs, path);
 
-	console.log(path);
-	
-	servicePromise
-		.then((response) => {
-			response.data = 'VAYSA';
-
-			return response;
-		})
-		.then((response) => {
-			res.json(response);
-		});
-}
-
-function list(req, res) {
-	let path = pathConcat('api' + req.url + '/' + req.method.toLowerCase() + '.json'),
-		servicePromise = filereader(fs, path);
-
-	console.log(path);
-	
-	servicePromise
-		.then((response) => {
-			res.json(response);
-		});
-}
-
-
-module.exports = { getBuildings, pathConcat, getUser, list };
+module.exports = { 
+	// getBuildings, 
+	pathConcat, 
+	// getUser, 
+	// list, 
+	universalMethod 
+};

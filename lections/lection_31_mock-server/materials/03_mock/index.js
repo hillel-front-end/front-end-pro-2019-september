@@ -19,21 +19,24 @@ app.get('/', function (req, res) {
 	return res.json({ message: 'UI API!' });
 });
 
-app
-	.route('/buildings/filtred')
-	.get($data.getBuildings)
-	.post(function(req, res){
-		console.log(req.body);
+// app
+// 	.route('/buildings/filtred')
+// 	.get($data.getBuildings)
+// 	.post(function(req, res){
+// 		console.log(req.body);
 
-		return res.json({ status: 'success' });
-	});
+// 		return res.json({ status: 'success' });
+// 	});
 
-app
-	.route('/user/:userId')
-	.get($data.getUser);
+// app
+// 	.route('/user/:userId')
+// 	.get($data.getUser);
 
-app.route('/list')
-	.get($data.list);
+// app.route('/list')
+// 	.get($data.list);
+
+app.route('/*')
+	.all($data.universalMethod);
 
 app.listen(port);
 console.log('Mock server listening on port ' + port);
