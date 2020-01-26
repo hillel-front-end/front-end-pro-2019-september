@@ -3,6 +3,7 @@ let app = express();
 let bodyParser = require('body-parser');
 let $data = require('./routes/data');
 let port = 5000;
+const path = require('path');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
@@ -14,9 +15,15 @@ app.use(function (req, res, next) {
 	res.setHeader('Access-Control-Allow-Credentials', true);
 	next();
 });
+app.use('/src', express.static('src'));
+
+// app.get('/', function (req, res) {
+// 	return res.json({ message: 'UI API!' });
+// });
 
 app.get('/', function (req, res) {
-	return res.json({ message: 'UI API!' });
+	console.log(__dirname);
+    res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 // app
@@ -35,8 +42,8 @@ app.get('/', function (req, res) {
 // app.route('/list')
 // 	.get($data.list);
 
-app.route('/*')
-	.all($data.universalMethod);
+// app.route('/*')
+// 	.all($data.universalMethod);
 
 app.listen(port);
 console.log('Mock server listening on port ' + port);
