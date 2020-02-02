@@ -1,5 +1,17 @@
 <template>
   <div id="app">
+    <h3>
+      <!-- {{ $store.state.title }} -->
+      {{ getTitle }}
+    </h3>
+    <h3>
+      {{ getCount }}
+    </h3>
+    <button @click="clickUpperCase">UpperCase</button>
+    <button @click="addItem">Add Item</button>
+
+
+    <hr>
     X: {{ x }}
     <br>
     x^2 {{ getUniqueX(x) }}
@@ -16,6 +28,11 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+import {
+  GET_TITLE
+} from './store/const';
+
 export default {
   name: 'app',
   components: {
@@ -25,23 +42,45 @@ export default {
       x: 10,
       y: 78,
       z: 56,
-      temp: 0
+      temp: 0,
+      commit: this.$store.commit
     }
   },
   methods: {
+    ...mapActions(['titleExample']),
     getUniqueX(value) {
-      // eslint-disable-next-line no-console
-      console.log('getUniqueX');
       return value*value - 23;
     },
     ClickMe() {
       this.temp = this.getSpecialValue;
+    },
+    clickUpperCase() {
+      this.commit('toUpperCase');
+    },
+    addItem() {
+      // this.commit('addItem', {value: 100500, options: {x: 10, y: 20}});
+      // this.commit({
+      //   type: 'addItem',
+      //   x: 10,
+      //   value: 100500,
+      //   zz: 'hello zz'
+      // });
+
+      // this.$store.dispatch('titleExample');
+      // this.$store.dispatch({
+      //   type: 'updateCount',
+      //   value: 67
+      // });
+
+      this.titleExample();
     }
   },
   computed: {
+    ...mapGetters(['getCount']),
+    ...mapGetters({
+      getTitle: GET_TITLE
+    }),
     getSpecialValue() {
-      // eslint-disable-next-line no-console
-      console.log('getSpecialValue');
       return this.x - this.y*this.z;
     }
   },
